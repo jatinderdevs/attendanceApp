@@ -3,12 +3,7 @@ const app = express();
 require("express-async-errors");
 require("dotenv").config();
 const mongoose = require("mongoose");
-const {
-  Cloudinary_ApiKey,
-  Cloudinary_Secret,
-  DATABASELink,
-  LocalDBURL,
-} = require("./keys.json");
+
 const path = require("path");
 const moment = require("moment");
 const flash = require("connect-flash");
