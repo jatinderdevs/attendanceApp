@@ -1,0 +1,63 @@
+<%-include('../../includes/header.ejs') %>
+
+<main>
+    <div class="container">
+        <section>
+            <h1>pass out students</h1>
+            <hr>
+            <table class="table text-center text-capitalize table-striped table-bordered">
+                <thead class="bg-success text-white ">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+
+                        <th scope="col">Student ID</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%for(let s of students){%>
+                    <tr>
+                        <th scope="row"><%=row+=1%></th>
+
+                        <td>
+                            <img src="<%=s.image%>" width="50px" class="rounded-circle" alt="">
+                        </td>
+                        <td><%=s.name%></td>
+                        <td>
+                            <%=s.studentId%>
+                        </td>
+                        <td>
+                            <span class="badge badge-dark badge-pill font-weight-normal p-2 text-capitalize">
+                                <%=s.enrollIn.name%>
+                            </span>
+
+                        </td>
+                        <td>
+
+                            <a href="/student/view/<%=s._id%>" class="btn btn-primary btn-sm">View</a>
+
+
+                        </td>
+                    </tr>
+                    <%}%>
+
+                </tbody>
+            </table>
+            <div class="paginationBtn">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination  justify-content-center ">
+                        <%for(let p=1; p<=pages;p++){%>
+                    <li class="page-item"><a class="page-link" href="/student/?page=<%=p%>"><%=p%> </a> </li>
+                    <%}%>
+                    
+                    </ul>
+                  </nav>
+            </div>
+           
+        </section>
+    </div>
+</main>
+<%-include('../../includes/footer.ejs') %>

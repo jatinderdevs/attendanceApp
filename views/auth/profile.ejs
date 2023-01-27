@@ -1,0 +1,67 @@
+<%-include('../../includes/header.ejs') %>
+
+<main>
+    <div class="container">
+        <section>
+            <h1>Profile</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profileImg">
+                        <img src="<%=user.image%>" width="70%" class="img-fluid rounded-circle" alt="">
+                        <hr>
+                        <h3 class="text-capitalize"><%=user.name%></h3>
+                        <strong>Join on : </strong><span><%=moment(user.createdAt).format("Do MMM  YYYY")%></span>
+                        <br>
+                        <strong>Role : </strong><span class="badge text-capitalize badge-danger"><%=user.role%></span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="profileInfo bg-light p-3">
+                        <h4 class="alert alert-info">General information
+                            <a href="/auth/edit" class="btn btn-sm btn-outline-primary float-right">Edit</a>
+                        </h4>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Name</th>
+                                <td><%=user.name%></td>
+                            </tr>
+                            <tr>
+                                <th>username</th>
+                                <td><%=user.username%></td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td><%=user.email%></td>
+                            </tr>
+                            <tr>
+                                <th>Contact</th>
+                                <td><%=user.contactno%></td>
+                            </tr>
+                            <tr>
+                                <th>Teach Subjects</th>
+                                <td><%=user.teach%></td>
+                            </tr>
+                            <tr>
+                                <th>Designation</th>
+                                <td><strong class="text-danger text-uppercase"><%=user.designation%></strong>
+                                </td>
+                            </tr>
+                        </table>
+                        <h4 class="alert alert-info">Account Setting</h4>
+                        <h6 class="text-danger">Change Password</h6>
+                        <form action="">
+                            <label for="">old password</label>
+                            <input type="password" class="form-control mb-2" placeholder="******">
+                            <label for="">new password</label>
+                            <input type="password" class="form-control" placeholder="******">
+                            <hr>
+                            <button class="btn btn-warning">Update Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<%-include('../../includes/footer.ejs') %>

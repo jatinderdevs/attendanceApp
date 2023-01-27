@@ -1,0 +1,95 @@
+<%-include('../../includes/header.ejs') %>
+
+<main>
+    <div class="container">
+        <section>
+            <h1>Update Attendance</h1>
+            <hr>
+            <div class="studentBox">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="studentFlex">
+                            <div class="studentImg">
+                                <img src="<%=student.image%>" class="img-fluid" alt="">
+                            </div>
+                            <div class="studentInfo">
+                                <h3 class="text-capitalize"><%=student.name%></h3>
+
+                                <span>Roll No : <strong class="text-danger"><%=student.studentId%></strong></span>
+
+                                <br>
+                                <span>Enroll In: <strong>
+                                        <div class="badge badge-primary badge-pill font-weight-normal text-capitalize">
+                                            <%=student.enrollIn.name%></div>
+                                    </strong></span>
+
+                            </div>
+                        </div>
+
+                        <form action="" class="text-center p-3" method="post">
+                            <select onchange="showAbsent(this)" name="isPresent" id="isPresent"
+                                class="mt-2 form-control">
+                                <option value="1" <%=attendance.isPresent?'':'selected'%> class="alert-danger">
+                                    Absent</option>
+                                <option value="0" <%=attendance.isPresent?'selected':''%> class="alert-success">Present
+                                </option>
+                            </select>
+                            <div id="timeInputs">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="">InTime</label>
+                                        <input name="inTime" type="time" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">OutTime</label>
+                                        <input name="outTime" type="time" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="aId" value="<%=attendance._id%>">
+                            <textarea name="remark" class="form-control my-2" id="remark" cols="30" rows="5"
+                                placeholder="Add Remark">
+                                <%=attendance.remark%>
+                            </textarea>
+                            <hr>
+                            <button type="submit" class="btn mx-4  btn-success">Update</button>
+                            <a href="/attendance/" class="btn mx-4  btn-dark">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<script>
+    const absent = document.querySelector("#remark");
+    const present = document.querySelector("#timeInputs");
+
+    const isPresent = document.querySelector("#isPresent");
+    const status = isPresent.value;
+    if (status == "0") {
+        absent.style.display = "none";
+    } else {
+        present.style.display = "none";
+    }
+
+
+    function showAbsent(selectOption) {
+
+        const status = selectOption.value;
+
+        if (status == "1") {
+            present.style.display = "none";
+
+            absent.style.display = "block";
+        } else {
+            absent.style.display = "none";
+
+            present.style.display = "block";
+
+
+        }
+
+    }
+</script>
+<%-include('../../includes/footer.ejs') %>

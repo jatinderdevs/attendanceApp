@@ -1,0 +1,63 @@
+<%-include('../../includes/header.ejs') %>
+
+
+<main>
+    <div class="container">
+        <section>
+            <h1>Dashboard</h1>
+            <hr>
+            <div class="search">
+                <div class="searchContainer">
+                    <input type="number" onkeyup="searchStudent(this,`/staff/search/${this.value}`)"
+                        class="txtbox w-100" placeholder="search student ">
+                    <ul id="studentList"></ul>
+                </div>
+            </div>
+            <div class="row">
+
+
+                <div class="col-md-4">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-header">My Total student</div>
+                        <div class="card-body">
+                            <h2 class="font-weight-bold"><%=studentCount%></h2>
+                            <p class="text-capitalize">total allocated students</p>
+
+                            <a href="/staff/mystudents" class="btn  btn-light btn-sm">View</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header">Attendance list</div>
+                        <div class="card-body">
+                            <h2 class="font-weight-bold"><%=attendanceCount%></h2>
+                            <p>present students</p>
+                            <a href="/attendance/" class="btn  btn-light btn-sm">manage Attendance</a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header">Passout Students</div>
+                        <div class="card-body">
+                            <h2 class="font-weight-bold"><%=passoutCount%></h2>
+                            <p>present students</p>
+                            <a href="/attendance/" class="btn  btn-light btn-sm">manage Attendance</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+        </section>
+    </div>
+</main>
+
+<%-include('../../includes/footer.ejs') %>

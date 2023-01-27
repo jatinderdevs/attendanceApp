@@ -1,0 +1,98 @@
+<%-include('../../includes/header.ejs') %>
+
+
+<main>
+    <div class="container">
+        <section>
+            <h1>manage attendance</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- <h4 class="badge badge-warning"><%=moment().format('Do MMMM YYYY');%></h4> -->
+                </div>
+                <div class="col-md-3 ">
+                    <!-- <form action="">
+                        <label for="" class="m-0">Search</label>
+                        <input type="text" name="" id="" placeholder="Search student." class="form-control">
+                    </form> -->
+                </div>
+                <div class="col-md-5 ">
+
+                    <form action="/attendance/getAttendance/" method="post" style="display: flex; gap: 20px;">
+
+                        <label for="" class="m-0">Select Date</label>
+                        <input required type="date" name="date" id="" class="form-control">
+                        <button class="btn btn-info">GetRecords</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <table class="table text-center text-capitalize table-md-responsive ">
+                <thead class="thead-dark ">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">isPresent</th>
+
+                        <th scope="col">InTime</th>
+                        <th scope="col">OutTime</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if(attendance.length===0){%>
+                    <tr>
+                        <td colspan="7">
+                            <span style="display: block;" class="alert alert-warning">There is no attendance marked this
+                                date</span>
+
+                            <a href="/attendance/" class="btn btn-warning">Clear filter</a>
+                        </td>
+
+                    </tr>
+
+                    <%}%>
+                    <%for(let a of attendance){%>
+                    <tr class=<%=a.isPresent?'alert-success':'alert-danger'%>>
+                        <th scope="row"><%=row+=1%></th>
+                        <td>
+                            <img src="<%=a.student.image%>" width="50px" class="rounded-circle" alt="">
+                        </td>
+                        <td><%=a.student.name%></td>
+                        <td>
+                            <strong class="text-uppercase"><%=a.isPresent?'Present':'Absent'%></strong>
+                        </td>
+                        <%if(a.isPresent){%>
+
+                        <td>
+                            <strong class="text-success"><%=moment(a.inTime).format('LT')%></strong>
+                        </td>
+                        <td>
+                            <strong class="text-danger"><%=a.outTime?moment(a.outTime).format('LT'):'-'%></strong>
+                        </td>
+                        <%}else{%>
+                        <td colspan="2">
+                            <strong class="text-danger">Remarks: <%=a.remark%></strong>
+                        </td>
+                        <%}%>
+                        <td>
+                            
+                            <a href="/attendance/updateAttendace/<%=a.student._id%>" class="btn btn-primary
+                        btn-sm">Edit</a>
+                        </td>
+                    </tr>
+                    <%}%>
+
+
+
+
+                </tbody>
+            </table>
+
+
+        </section>
+    </div>
+</main>
+
+<%-include('../../includes/footer.ejs') %>

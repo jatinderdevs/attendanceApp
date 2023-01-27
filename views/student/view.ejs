@@ -1,0 +1,118 @@
+<%-include('../../includes/header.ejs') %>
+
+<main>
+    <div class="container">
+        <section>
+            <h1>Student Details</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="profilebox">
+                        <img src="<%=student.image%>" class="img-fluid" alt="">
+                        <hr>
+                        <h3 class="text-capitalize"><%=student.name%> </h3>
+
+                        <strong class="text-capitalize">tutor: <span
+                                class="text-danger"><%=student.teacher.name%></span></strong><br>
+                        <strong class="text-capitalize">course status: <span
+                                class="<%=student.isCourseComplete?'text-success':'text-danger'%>"><%=student.isCourseComplete?'complete':'processing'%></span></strong>
+                        <hr>
+                        <a href="/attendance/attendanceSheet/<%=student._id%>" target="_blank"
+                            class="btn btn-primary">View Attendance
+                            sheet</a>
+
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body bg-light">
+                            <h5 class="alert alert-info">Genral Information</h5>
+                            <table class="table table-bordered text-capitalize">
+                                <tr>
+                                    <th>Name</th>
+                                    <td><%=student.name%></td>
+                                </tr>
+                                <tr>
+                                    <th>Father Name</th>
+                                    <td><%=student.fatherName%></td>
+                                </tr>
+                                <tr>
+                                    <th>Date of birth</th>
+                                    <td><%=moment(student.dateOfBirth).format("Do MMM YYYY")%></td>
+                                </tr>
+                                <tr>
+                                    <th>enrolled in</th>
+                                    <td><span
+                                            class="badge badge-success p-2 font-weight-normal"><%=student.enrollIn.name%></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Roll Number/Student Id</th>
+                                    <td><strong class="text-danger"><%=student.studentId%></strong></td>
+                                </tr>
+                                <tr>
+                                    <th>joining date</th>
+                                    <td><%=moment(student.createdAt).format("Do MMM YYYY")%></td>
+                                </tr>
+
+
+                            </table>
+                            <hr>
+                            <h5 class="alert alert-info">contact Information</h5>
+                            <table class="table table-bordered text-capitalize">
+                                <tr>
+                                    <th>Email</th>
+                                    <td><%=student.email%></td>
+                                </tr>
+                                <tr>
+                                    <th>contact number</th>
+                                    <td><%=student.contact%></td>
+                                </tr>
+                                <tr>
+                                    <th>alternative contact</th>
+                                    <td><%=student.alterContact%></td>
+                                </tr>
+                                <tr>
+                                    <th>address</th>
+                                    <td><%=student.address%>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                            <h5 class="alert alert-info">Manage student</h5>
+                            <form style="display:inline-block;" action="/student/courseComplete" method="post">
+                                <input type="hidden" name="id" value="<%=student._id%>">
+                                <%if(!student.isCourseComplete){%>
+                                <button onclick="return confirm('Are you sure to submit?')"
+                                    class="btn btn-success">isCourseComplete</button>
+                                <%}else{%>
+                                <button onclick="return confirm('Are you sure reverse to not complete course ?')"
+                                    class="btn btn-info">under
+                                    Going</button>
+                                <%}%>
+                            </form>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <%if(role==="admin"){%>
+                                <form action="/student/terminate" style="display:inline-block;" method="post">
+                                    <input type="hidden" name="id" value="<%=student._id%>">
+                                    <%if(!student.isterminate){%>
+                                    <button onclick="return confirm('Are you sure to terminate?')"
+                                        class="btn btn-danger">Terminate Student</button>
+                                    <%}else{%>
+                                    <button onclick="return confirm('Are you sure to Active ?')"
+                                        class="btn btn-success">Active Student</button>
+                                    <%}%>
+                                </form>
+                               
+                                <%}%>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<%-include('../../includes/footer.ejs') %>

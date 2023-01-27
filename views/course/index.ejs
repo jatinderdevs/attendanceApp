@@ -1,0 +1,118 @@
+<%-include('../../includes/header.ejs') %>
+<main>
+    <div class="container">
+        <section>
+            <h1>All Courses</h1>
+            <a href="/course/create" class="btn btn-success">Add new courses</a>
+            <hr>
+
+            <table class="table text-center table-striped text-capitalize table-bordered">
+                <thead class="bg-dark text-white ">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">course Name</th>
+                        <th scope="col">duration</th>
+
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if(courses.length===0){%>
+                    <tr>
+                        <td colspan="5">
+                            <span style="display: block;" class="alert my-2 alert-warning">There is no course added
+                                yet!</span>
+                            <a href="/course/create" class="btn btn-sm btn-success">Add courses</a>
+
+                        </td>
+                    </tr>
+
+                    <%}%>
+                    <%for(let c of courses){%>
+                    <tr>
+                        <th scope="row"><%=rows+=1%></th>
+                        <td><%=c.name%></td>
+
+                        <td>
+
+                            <span
+                                class="badge badge-dark badge-pill font-weight-normal p-2 text-capitalize"><%=c.duration%></span>
+                        </td>
+                        <td>
+
+                            <a href="/course/edit/<%=c._id%>" class="btn btn-warning btn-sm"><img
+                                    src="/img/icons/edit.png" class="img-fluid" alt=""> Edit</a>
+
+                            <form action="/course/remove" method="post" style="display: inline-block;">
+                                <input type="hidden" value="<%=c._id%>" name="id">
+                                <button onclick="return confirm('Are you sure to delete this record?')"
+                                    class="btn btn-danger btn-sm"><img src="/img/icons/delete.png" class="img-fluid"
+                                        alt=""> Remove</button>
+                            </form>
+
+                        </td>
+                    </tr>
+                    <%}%>
+               
+
+                </tbody>
+            </table>
+
+
+        </section>
+        <section>
+            <div>
+                <canvas id="staffChart"></canvas>
+            </div>
+        </section>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    getdata()
+    
+
+    async function getdata() {
+        const getData= await fetch('/report/getStudentsByCourse', {
+            method: 'GET'
+        });
+        const data=await getData.json();
+        const { coursesName, totalStudent}= data;
+       getGraphData(coursesName,totalStudent);
+        
+    }
+  
+    function getGraphData(labelNames,numbers){
+        const labels = labelNames;
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Number of students Enroll In Particular Course',
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.4)',
+                'rgba(255, 159, 64, 0.4)',
+                'rgba(255, 205, 86, 0.5)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+            ],
+            borderColor: 'rgb(255, 99, 132)',
+            data: numbers,
+        }]
+    };
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {}
+    };
+    const myChart = new Chart(
+        document.getElementById('staffChart'),
+        config
+    );
+    }
+   
+</script>
+<%-include('../../includes/footer.ejs') %>

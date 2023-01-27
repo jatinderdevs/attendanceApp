@@ -1,0 +1,78 @@
+<%-include('../../includes/header.ejs') %>
+<main>
+    <div class="container">
+        <section>
+            <h1>my student</h1>
+            <hr>
+
+            <table class="table text-center table-striped text-capitalize table-bordered">
+                <thead class="bg-dark text-white ">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">image</th>
+
+                        <th scope="col">Name</th>
+                        <th scope="col">StudentId</th>
+                        <th scope="col">course</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if(students.length===0){%>
+                    <tr>
+                        <td colspan="6">
+                            <span style="display: block;" class="alert my-2 alert-warning">There is no Student allocated
+                                to you <br>
+                                <small class="text-danger"> if you find any problem contact Admin</small>
+                            </span>
+
+                        </td>
+                    </tr>
+
+                    <%}%>
+                    <%for(let s of students){%>
+                    <tr class="<%=(s.isterminate)?'terminate':''%>">
+                        <th scope="row"><%=rows+=1%></th>
+                        <td>
+                            <img src="<%=s.image%>" width="50px" class="img-fluid" alt="">
+                        </td>
+                        <td><%=s.name%></td>
+                        <td>
+                            <%=s.studentId%>
+                        </td>
+                        <td>
+
+                            <span
+                                class="badge text-uppercase badge-dark badge-pill font-weight-normal p-2 "><%=s.enrollIn.name%></span>
+                        </td>
+
+
+                        <td>
+                            <%if(s.isTodayAttendanceDone){%>
+                            <a href="/attendance/mark/<%=s._id%>" class="btn btn-danger  btn-sm"><img
+                                    src="/img/icons/edit.png" class="img-fluid" alt=""> marked</a>
+                            <%}else{%>
+                            <a href="/attendance/mark/<%=s._id%>" class="btn btn-warning btn-sm"><img
+                                    src="/img/icons/edit.png" class="img-fluid" alt=""> mark Attendance</a>
+                            <%}%>
+                                <a href="/student/view/<%=s._id%>" class="btn btn-info btn-sm"><img
+                                src="/img/icons/view.png" class="img-fluid" alt="">
+                            view</a>
+
+
+
+
+
+                        </td>
+                    </tr>
+                    <%}%>
+               
+
+                </tbody>
+            </table>
+
+
+        </section>
+    </div>
+</main>
+<%-include('../../includes/footer.ejs') %>

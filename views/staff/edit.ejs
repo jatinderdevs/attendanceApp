@@ -1,0 +1,72 @@
+<%-include('../../includes/header.ejs') %>
+
+<main>
+    <div class="container">
+        <section>
+            <h1>update staff member </h1>
+            <hr>
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="post">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="">full name</label>
+                                <input type="text" class="form-control" id="name" name="name" value="<%=staff.name%>"
+                                    placeholder="Full Name">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">email id</label>
+                                <input type="email" class="form-control" value="<%=staff.email%>" name="email"
+                                    placeholder="Email Id">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">contact</label>
+
+                                <input type="text" class="form-control" value="<%=staff.contactno%>" name="contact"
+                                    placeholder="Mobile No">
+                            </div>
+
+                        </div>
+                        <div class="row ">
+
+                            <div class="col-md-4">
+                                <label for="">Designation</label>
+                                <input type="text" class="form-control" name="designation"
+                                    value="<%=staff.designation%>" placeholder="Designation">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">teach</label>
+
+                                <input type="text" class="form-control" name="teach" value="<%=staff.teach%>"
+                                    placeholder="Teach Subject">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="text-danger">role</label>
+                                <select name="role" id="" class="form-control">
+                                    <option value="">select Role</option>
+                                    <option <%=staff.role==='admin'?'selected':''%> value="admin">Admin
+                                    </option>
+                                    <option <%=staff.role==='employee'?'selected':''%> value="employee">Employee
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <hr>
+                        <%if(msg){%>
+                        <span class="alert alert-danger text-capitalize" style="display:block"><%=msg%></span>
+                        <%}%>
+
+                        <a href="/admin/dashboard" class="btn btn-dark float-left">Cancel</a>
+                        <button type="submit" class="btn btn-success float-right">Update Staff</button>
+
+                    </form>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<%-include('../../includes/footer.ejs') %>

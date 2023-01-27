@@ -1,0 +1,53 @@
+<%-include('../../includes/header.ejs') %>
+
+<main>
+    <div class="container">
+        <section>
+            <h1>attendance sheet</h1>
+            <table class="table text-center text-capitalize table-bordered">
+                <thead class="bg-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>In time</th>
+                        <th>Out time</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <%for(let a of attendance){%>
+                    <tr>
+                        <th scope="row"><%=row+=1%></th>
+
+                        <td><%=a.student.name%></td>
+                        <td><%=moment(a.createdAt).format('DD-MMM-YYYY')%></td>
+                        <td>
+                            <strong
+                                class="text-uppercase <%=a.isPresent?'text-success':'text-danger'%>"><%=a.isPresent?'Present':'Absent'%></strong>
+                        </td>
+                        <%if(a.isPresent){%>
+
+                        <td>
+                            <strong><%=moment(a.inTime).format('LT')%></strong>
+                        </td>
+                        <td>
+                            <strong><%=a.outTime?moment(a.outTime).format('LT'):'-'%></strong>
+                        </td>
+                        <%}else{%>
+                        <td colspan="2">
+                            <strong class="text-danger">Remarks: <%=a.remark%></strong>
+                        </td>
+                        <%}%>
+                    </tr>
+                    <%}%>
+
+
+                </tbody>
+            </table>
+        </section>
+    </div>
+</main>
+
+<%-include('../../includes/footer.ejs') %>

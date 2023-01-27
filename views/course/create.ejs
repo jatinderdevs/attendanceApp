@@ -1,0 +1,36 @@
+<%-include('../../includes/header.ejs') %>
+<main>
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="offset-md-3 col-md-6">
+                    <div class="card">
+                        <div class="card-title">
+                            <h1><%=heading%> course</h1>
+                        </div>
+                        <div class="card-body">
+                            <form action="" method="post">
+                                <label for="">Course Name*</label>
+                                <input type="text" value="<%=name%>" name="name" class="form-control"
+                                    placeholder="eg Computer Basic">
+                                <br>
+                                <label for="">Duration*</label>
+                                <input type="text " value="<%=duration%>" name="duration" class="form-control"
+                                    placeholder="eg 3 months">
+                                <hr>
+                                <%if(msg){%>
+                                <span class="alert alert-danger text-capitalize" style="display:block"><%=msg%></span>
+                                <%}%>
+                                <a href="/course/" class="btn btn-dark float-left">Cancel</a>
+                                <button class="btn btn-success float-right">Create</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </div>
+</main>
+<%-include('../../includes/footer.ejs') %>

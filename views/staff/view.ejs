@@ -1,0 +1,98 @@
+<%-include('../../includes/header.ejs') %>
+
+<main>
+    <div class="container">
+        <section>
+            <h1>Details
+            </h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="profilebox">
+                        <img src="<%=staff.image%>" class="img-fluid" alt="">
+                        <hr>
+                        <h3 class="text-capitalize"><%=staff.name%> </h3>
+
+
+                        <strong class="text-capitalize">joined on: <span
+                                class="text-danger"><%=moment(staff.createdAt).format("Do MMM YYYY")%></span></strong><br>
+
+
+                    </div>
+                    <div class="card mt-4">
+                        <div class="card-title">
+                            <h4 class="alert alert-success text-capitalize text-center">total student </h4>
+                        </div>
+                        <div class="card-body grid">
+                            <h2 class="numberofStudent text-success"><%=totalStudents%></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body bg-light">
+                            <h5 class="alert alert-info">Genral Information</h5>
+                            <table class="table table-bordered text-capitalize">
+                                <tr>
+                                    <th>Name</th>
+                                    <td><%=staff.name%></td>
+                                </tr>
+
+                                <tr>
+                                    <th>username</th>
+                                    <td><%=staff.username%></td>
+                                </tr>
+                                <tr>
+                                    <th>designation</th>
+                                    <td><span
+                                            class="badge text-uppercase badge-success p-2 font-weight-normal"><%=staff.designation%></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>teach</th>
+                                    <td><strong class="text-danger"> <%=staff.teach%></strong></td>
+                                </tr>
+                                <tr>
+                                    <th>role</th>
+                                    <td><%=staff.role%></td>
+                                </tr>
+
+
+                            </table>
+                            <hr>
+                            <h5 class="alert alert-info">contact Information</h5>
+                            <table class="table table-bordered text-capitalize">
+                                <tr>
+                                    <th>Email</th>
+                                    <td><%=staff.email%></td>
+                                </tr>
+                                <tr>
+                                    <th>contact number</th>
+                                    <td><%=staff.contactno%></td>
+                                </tr>
+
+
+
+                            </table>
+                            <h5 class="alert alert-info">Manage</h5>
+                            <form action="/staff/terminate" method="post">
+                                <input type="hidden" name="id" value="<%=staff._id%>">
+                                <%if(!staff.isterminate){%>
+                                <button onclick="return confirm('Are you sure to terminate?')"
+                                    class="btn btn-danger">Terminate Teacher</button>
+                                <%}else{%>
+                                <button onclick="return confirm('Are you sure to Active ?')"
+                                    class="btn btn-success">Active Teacher</button>
+                                <%}%>
+                            </form>
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<%-include('../../includes/footer.ejs') %>

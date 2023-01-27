@@ -1,0 +1,90 @@
+<%-include('../../includes/header.ejs') %>
+<main>
+    <div class="container">
+        <section>
+            <h1 class="m-0">Dashboard</h1>
+            <span class="badge badge-warning m-0">ADMIN</span>
+            <hr>
+            <div class="search">
+                <form action="">
+                    <div class="searchContainer">
+                        <input type="number" onkeyup="searchStudent(this,`/student/search/${this.value}`)"
+                            class="txtbox w-100" placeholder="search student ">
+                        <ul id="studentList"></ul>
+                    </div>
+
+                    <!-- <button class="btnSearch"><img src="../img/icons/search.png" alt=""> </button> -->
+                </form>
+            </div>
+            <div class="row">
+
+
+                <div class="col-md-3">
+                    <div class="card text-white bg-warning mb-3">
+                        <div class="card-header">Students</div>
+                        <div class="card-body">
+                            <h2 class="font-weight-bold"><%=student%></h2>
+                            <p class="text-capitalize">total students</p>
+
+                            <a href="/student/create" class="btn  btn-outline-light btn-sm">Add Student</a>
+
+                            <a href="/student/" class="btn  btn-light btn-sm">View</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header">Teachers</div>
+                        <div class="card-body">
+                            <h2 class="font-weight-bold"><%=staffCount%></h2>
+                            <p>Staff memebers</p>
+                            <a href="/auth/signup" class="btn  btn-outline-light btn-sm">add Teacher</a>
+
+                            <a href="/staff/" class="btn  btn-light btn-sm">manage</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-info mb-3">
+                        <div class="card-header">Courses</div>
+                        <div class="card-body">
+                            <h2 class="font-weight-bold"><%=courseCount%></h2>
+                            <p>Active courses</p>
+                            <a href="/course/create" class="btn  btn-outline-light btn-sm">add Course</a>
+
+                            <a href="/course/" class="btn  btn-light btn-sm">View</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-header">Pass Out Students</div>
+                        <div class="card-body">
+                            <h2 class="font-weight-bold"><%=passOut%></h2>
+                            <p>Course completed</p>
+                            <a href="/admin/passout" class="btn  btn-light btn-sm">View</a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+        </section>
+    </div>
+</main>
+<%-include('../../includes/footer.ejs') %>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>

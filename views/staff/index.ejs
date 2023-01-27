@@ -1,0 +1,134 @@
+<%-include('../../includes/header.ejs') %>
+<main>
+    <div class="container">
+        <section>
+            <h1>All staff</h1>
+            <hr>
+
+            <table class="table text-center table-striped text-capitalize table-bordered">
+                <thead class="bg-dark text-white ">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">image</th>
+                        <th scope="col">designation</th>
+                        <th scope="col">role</th>
+                        <th scope="col">phone</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if(staff.length===0){%>
+                    <tr>
+                        <td colspan="5">
+                            <span style="display: block;" class="alert my-2 alert-warning">There is no course added
+                                yet!</span>
+                            <a href="/course/create" class="btn btn-sm btn-success">Add staff</a>
+
+                        </td>
+                    </tr>
+
+                    <%}%>
+                    <%for(let s of staff){%>
+                    <tr class="<%=(s.isterminate)?'terminate':''%>">
+                        <th scope="row"><%=rows+=1%></th>
+                        <td><%=s.name%></td>
+                        <td>
+                            <img src="<%=s.image%>" width="50px" class="img-fluid" alt="">
+                        </td>
+                        <td>
+
+                            <span
+                                class="badge text-uppercase badge-dark badge-pill font-weight-normal p-2 "><%=s.designation%></span>
+                        </td>
+                        <td>
+                            <%if(s.role==="admin"){%>
+                            <span
+                                class="badge  badge-success badge-pill font-weight-normal p-2 font-weight-bold "><%=s.role%></span>
+                            <%}else{%>
+                            <span
+                                class="badge  badge-secondary badge-pill font-weight-normal p-2 font-weight-bold "><%=s.role%></span>
+                            <%}%>
+                            
+                        </td>
+                        <td>
+                            <%=s.contactno%>
+                        </td>
+                        <td>
+                            <a href="/staff/view/<%=s._id%>" class="btn btn-info btn-sm"><img src="/img/icons/view.png"
+                                    class="img-fluid" alt="">
+                                view</a>
+
+                            <a href="/staff/edit/<%=s._id%>" class="btn btn-warning btn-sm"><img
+                                    src="/img/icons/edit.png" class="img-fluid" alt=""> Edit</a>
+
+
+
+                        </td>
+                    </tr>
+                    <%}%>
+               
+                </tbody>
+            </table>
+
+        </section>
+        <section>
+            <div>
+                <canvas id="staffChart"></canvas>
+            </div>
+        </section>
+    </div>
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    getdata()
+    
+
+    async function getdata() {
+        const getData= await fetch('/report/getStudentsById', {
+            method: 'GET'
+        });
+        const data=await getData.json();
+        const {teacher,numberOfStudent}= data;
+       getGraphData(teacher,numberOfStudent);
+        
+    }
+  
+    function getGraphData(labelNames,numbers){
+        const labels = labelNames;
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Number of students Allocated to Teacher',
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.4)',
+                'rgba(255, 159, 64, 0.4)',
+                'rgba(255, 205, 86, 0.5)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+            ],
+            borderColor: 'rgb(255, 99, 132)',
+            data: numbers,
+        }]
+    };
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {}
+    };
+    const myChart = new Chart(
+        document.getElementById('staffChart'),
+        config
+    );
+    }
+   
+</script>
+
+
+<%-include('../../includes/footer.ejs') %>

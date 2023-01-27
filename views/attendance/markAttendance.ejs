@@ -1,0 +1,83 @@
+<%-include('../../includes/header.ejs') %>
+
+
+<main>
+    <div class="container">
+        <section>
+            <h1>mark Attendance</h1>
+            <hr>
+            <div class="studentBox">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="studentFlex">
+                            <div class="studentImg">
+                                <img src="<%=student.image%>" class="img-fluid" alt="">
+                            </div>
+                            <div class="studentInfo">
+                                <h3 class="text-capitalize"><%=student.name%></h3>
+
+                                <span>Roll No : <strong class="text-danger"><%=student.studentId%></strong></span>
+
+                                <br>
+                                <span>Enroll In: <strong>
+                                        <div class="badge badge-primary badge-pill font-weight-normal text-capitalize">
+                                            <%=student.enrollIn.name%></div>
+                                    </strong></span>
+
+                            </div>
+                        </div>
+                        <%if(!isExist){%>
+                        <form action="/attendance/mark/" style="display: inline-block;" class="py-3" method="post">
+                            <input type="hidden" name="studentId" value="<%=student._id%>">
+                            <input type="hidden" name="remark" value="">
+                            <button type="submit" class="btn  my-0 btn-success">Present</button>
+
+
+                        </form>
+                        <button onclick="showAbsent()" id="btnAbsent"
+                            class="btn my-3 float-right  btn-danger">Absent</button>
+
+                        <form action="/attendance/mark/" id="absent" class="absent py-3" method="post">
+                            <input type="hidden" name="studentId" value="<%=student._id%>">
+                            <textarea required name="remark" class="form-control my-2" id="remark" cols="30" rows="5"
+                                placeholder="Add Remark"></textarea>
+
+                            <button type="submit" class="btn my-0  btn-danger">Absent</button>
+                        </form>
+                        <%}else{%>
+                        <%if(!isExist.isPresent){%>
+                        <a href="/attendance/" class="btn btn-info btn-block">view attendance</a>
+
+                        <%}else if(!isExist.outTime){%>
+                        <form action="/attendance/outtime/" class="py-3" method="post">
+                            <div class="float-right">
+                                <label for="">inTime</label>
+                                <br>
+                                <strong class="text-success "><%=moment(isExist.inTime).format('LT ')%></strong>
+                            </div>
+                            <br>
+                            <input type="hidden" name="studentId" value="<%=student._id%>">
+
+                            <button type="submit" class="btn   my-0 btn-danger">OutTime</button>
+                        </form>
+                        <%}else{%>
+                        <a href="/attendance/" class="btn btn-info btn-block">view attendance</a>
+                        <%}%>
+                        <%}%>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<script>
+    function showAbsent() {
+        document.getElementById("absent").style.display = "block";
+
+
+        document.getElementById("btnAbsent").style.display = "none";
+
+    }
+</script>
+<%-include('../../includes/footer.ejs') %>

@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300&display=swap');
+:root{
+   
+    --primary:#00a2ff;
+    --secondry:#f4341b;
+}
+*{
+    margin: 0;
+    padding: 0;
+    transition: ease-in-out all 500ms;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+section{
+    padding: 60px 0;
+}
+h1{
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+    text-transform: capitalize;
+}
+a:hover{
+    text-decoration: none;
+}
+p{
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    line-height: 1.6;
+}
+.search{
+    padding: 20px 0;
+    text-align: center;
+}
+.txtbox{
+    text-transform: capitalize;
+    border: 1px solid #dfdfdf;
+    border-radius: 30px;
+    width: 300px;
+    padding: 10px 15px;
+}
+.btnSearch{
+    background: white;
+    border: none;
+    
+    margin-left: 10px;
+}
+.login{
+    background-image: linear-gradient(120deg,var(--secondry),var(--primary));
+    height: 100vh;
+    animation: wave 6s infinite alternate;
+    background-size:150% ;
+   
+}
+.grid{
+    display: grid;
+    place-content: center;
+}
+@keyframes wave {
+    0% {
+      background-position: left;
+    }
+    100% {
+      background-position: right;
+    }
+  }
+.loginBox{
+    padding:40px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.4 );
+    border-radius: 20px;   
+}
+.loginBox h4{
+    color: white;
+    margin-bottom: 15px;
+}
+.loginImg{
+    margin: 15px auto;
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.profileBtn{
+    position: relative;
+}
+.drp{
+    position: absolute;
+    left: 0;
+    display: none;
+    top: 43px;
+    right: 0;
+    background: white;
+}
+ul{
+    list-style-type: none;
+}
+.drp ul li{
+    border-bottom: 1px solid #dfdfdf;
+}
+.drp ul li a{
+    padding: 10px 5px;
+    display: inline-block;
+}
+
+.drp ul li:hover{
+    background: var(--primary);
+}
+/* table data set to vertical middle */
+table>tbody>tr>td{
+    vertical-align: middle !important;
+}
+.studentBox{
+    width: 600px;
+    margin: 0 auto;
+    border: 1px solid #dfdfdf;
+    padding: 20px;
+    border-radius: 20px;
+}
+.studentFlex{
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+    border-bottom: 1px solid #dfdfdf;
+    justify-content: space-between;
+}
+.studentImg{
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+
+    border-radius: 50%;
+}
+.studentInfo{
+    text-align: right;
+}
+.profileImg{
+    text-align: center;
+}
+label{
+    margin-top: 20px;
+    margin-bottom: 0;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+.uploader{
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.profilebox{
+    text-align: center;
+    border: 1px solid #dfdfdf;
+    padding: 10px 0;
+    border-radius: 10px;
+    background: #f9f9fb;
+}
+.terminate{
+    background: #ff00005e !important;
+}
+.absent{
+    display:none;
+}
+.numberofStudent{
+    font-size: 7rem;
+    font-weight: bold;
+}
+.hide{
+    display: none;
+}
+.show
+{
+    display: block;
+}
+.searchImg{
+    width: 5%;
+}
+.searchContainer{
+    position: relative;
+}
+#studentList{
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: rgb( 255, 255, 255);
+}
+#studentList>li>a{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #888;
+}
+#studentList>li>a:hover{
+    background: #00a2ff;
+    color: white;
+}

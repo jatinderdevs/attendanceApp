@@ -1,0 +1,64 @@
+<%-include('../../includes/header.ejs') %>
+
+<main>
+    <div class="container">
+        <section>
+            <h1>update profile </h1>
+            <hr>
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="">full name</label>
+                                <input type="text" class="form-control" id="name" name="name" value="<%=user.name%>"
+                                    placeholder="Full Name">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">email id</label>
+                                <input type="email" class="form-control" value="<%=user.email%>" name="email"
+                                    placeholder="Email Id">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">contact</label>
+
+                                <input type="text" class="form-control" value="<%=user.contactno%>" name="contact"
+                                    placeholder="Mobile No">
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="uploader">
+                                <div class="studentImg">
+                                    <img id="imgView" src="<%=user.image%>" class="img-fluid" alt="">
+
+                                </div>
+
+                                <div>
+                                    <label for="">student image</label>
+                                    <input
+                                        onchange="document.getElementById('imgView').src = window.URL.createObjectURL(this.files[0])"
+                                        type="file" name="img" id="img" class="form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <%if(msg){%>
+                        <span class="alert alert-danger text-capitalize" style="display:block"><%=msg%></span>
+                        <%}%>
+
+                        <a href="/admin/dashboard" class="btn btn-dark float-left">Cancel</a>
+                        <button type="submit" class="btn btn-success float-right">Update</button>
+
+                    </form>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<%-include('../../includes/footer.ejs') %>

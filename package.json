@@ -1,0 +1,31 @@
+{
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cloudinary": "^1.32.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^3.1.1",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.14.2",
+    "moment": "^2.29.4",
+    "mongoose": "^6.6.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.20",
+    "streamifier": "^0.1.1"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend attendance",
+  "main": "app.js",
+  "author": "jatinder singh",
+  "license": "ISC"
+}

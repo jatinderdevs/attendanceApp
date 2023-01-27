@@ -1,0 +1,99 @@
+<%-include('../../includes/header.ejs') %>
+
+<main>
+    <div class="container">
+        <section>
+            <h1>add staff member </h1>
+            <hr>
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="">full name</label>
+                                <input type="text" class="form-control" id="name" name="name" value="<%=name%>"
+                                    placeholder="Full Name">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">email id</label>
+                                <input type="email" class="form-control" value="<%=email%>" name="email"
+                                    placeholder="Email Id">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">contact</label>
+
+                                <input type="text" class="form-control" value="<%=contactno%>" name="contact"
+                                    placeholder="Mobile No">
+                            </div>
+
+                        </div>
+                        <div class="row ">
+
+                            <div class="col-md-6">
+                                <label for="">Designation</label>
+                                <input type="text" class="form-control" name="designation" value="<%=designation%>"
+                                    placeholder="Designation">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">teach</label>
+
+                                <input type="text" class="form-control" name="teach" value="<%=teach%>"
+                                    placeholder="Teach Subject">
+                            </div>
+
+                        </div>
+                        <div class="row ">
+
+                            <div class="col-md-4">
+                                <label for="" class="text-danger">username</label>
+                                <input type="text" class="form-control" name="username" value="<%=username%>"
+                                    placeholder="Username">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="text-danger">password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Password">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="text-danger">role</label>
+                                <select name="role" id="" class="form-control">
+                                    <option value="">select Role</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="employee">Employee</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="uploader">
+                                <div class="studentImg">
+                                    <img id="imgView"
+                                        src="https://www.pngitem.com/pimgs/m/581-5813504_avatar-dummy-png-transparent-png.png"
+                                        class="img-fluid" alt="">
+
+                                </div>
+
+                                <div>
+                                    <label for="">student image</label>
+                                    <input
+                                        onchange="document.getElementById('imgView').src = window.URL.createObjectURL(this.files[0])"
+                                        type="file" name="img" id="img" class="form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <%if(msg){%>
+                        <span class="alert <%=className%> text-capitalize" style="display:block"><%=msg%></span>
+                        <%}%>
+
+                        <a href="/admin/dashboard" class="btn btn-dark float-left">Cancel</a>
+                        <button type="submit" class="btn btn-success float-right">Add Staff</button>
+
+                    </form>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<%-include('../../includes/footer.ejs') %>
