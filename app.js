@@ -16,15 +16,15 @@ const bodyparser = require("body-parser");
 const session = require("express-session");
 const mongodbstore = require("connect-mongodb-session")(session);
 
-const DATABASE_URI = DATABASELink;
+const DATABASE_URI = process.env.DATABASELink;
 
 //image upload service
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
   cloud_name: "mynodecloudstorage",
-  api_key: Cloudinary_ApiKey,
-  api_secret: Cloudinary_Secret,
+  api_key: process.env.Cloudinary_ApiKey,
+  api_secret: process.env.Cloudinary_Secret,
   secure: true,
 });
 
