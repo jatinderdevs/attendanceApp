@@ -19,7 +19,6 @@ router.post(
     body("name", "Please enter FullName").notEmpty(),
     body("contact", "Please enter Contact number").notEmpty(),
     body("designation", "Please enter Designation").notEmpty(),
-    body("teach", "Please select Teaching Subject").notEmpty(),
     body("role", "Please select Role of a user").notEmpty(),
     body("email").isEmail().withMessage("please enter a correct email address"),
     body("password", "Password Should be minimum 5 Charcters").isLength({

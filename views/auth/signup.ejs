@@ -35,10 +35,15 @@
                                     placeholder="Designation">
                             </div>
                             <div class="col-md-6">
-                                <label for="">teach</label>
-
-                                <input type="text" class="form-control" name="teach" value="<%=teach%>"
-                                    placeholder="Teach Subject">
+                                <label for="">teach <small> (select Courses)</small></label>
+                                <select name="teach" id="teach" class="form-control">
+                                    <option value="">Select Course</option>
+                                    <%for(let c of courses){%>
+                                    <option <%=(teach.toString()==c._id.toString())?'selected':''%> value="<%=c._id%>">
+                                        <%=c.name%></option>
+                                    <%}%>
+                                </select>
+                               
                             </div>
 
                         </div>

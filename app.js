@@ -11,7 +11,7 @@ const bodyparser = require("body-parser");
 const session = require("express-session");
 const mongodbstore = require("connect-mongodb-session")(session);
 
-const DATABASE_URI = process.env.DATABASELink;
+const DATABASE_URI = process.env.DATABASE_URI;
 
 //image upload service
 const cloudinary = require("cloudinary").v2;

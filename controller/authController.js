@@ -1,4 +1,5 @@
 const Auth = require("../models/auth");
+const Courses = require("../models/course");
 const { validationResult } = require("express-validator");
 // const sgMail = require('@sendgrid/mail');
 const bcrypt = require("bcryptjs");
@@ -7,6 +8,7 @@ const { cloudUpload } = require("../middleware/cloudService");
 exports.signUp = async (req, res, next) => {
   let errmsg = req.flash("error");
   let success = req.flash("success");
+  const courses = await Courses.find().select("name");
   let className = "";
   if (errmsg.length > 0) {
     errmsg = errmsg[0].trim();
@@ -26,7 +28,7 @@ exports.signUp = async (req, res, next) => {
     email: "",
     contactno: "",
     designation: "",
-
+    courses,
     teach: "",
   });
 };
@@ -42,6 +44,8 @@ exports.postSignUp = async (req, res, next) => {
     return res.redirect("/auth/signup");
   }
   if (!isexist && !error.isEmpty()) {
+    const courses = await Courses.find().select("name");
+
     return res.status(422).render("auth/signup.ejs", {
       title: "Sign Up",
       msg: error.array()[0].msg,
@@ -52,7 +56,7 @@ exports.postSignUp = async (req, res, next) => {
       password,
       contactno: contact,
       designation,
-
+      courses,
       role,
       teach,
     });
